@@ -14,7 +14,6 @@ use App\Entity\Groupe;  // importe le grp si non erreur
 
 
 
-
 class AdminSecuController extends AbstractController
 {
     #[Route('/inscription', name: 'inscription')]
@@ -27,6 +26,7 @@ class AdminSecuController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $em->persist($utilisateur);
             $em->flush();
+            return $this->redirectToRoute("app_welcome");
         }
 
         return $this->render('admin_secu/inscription.html.twig',[
